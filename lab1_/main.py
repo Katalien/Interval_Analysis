@@ -2,15 +2,18 @@ import intvalpy as ip
 import numpy as np
 import matplotlib.pyplot as plt
 from copy import deepcopy
+
+
 # Task 1
 
 def calculateDet(delta):
-        midA = [[1.05, 1],
-                [0.95, 1]]
-        radA = [[delta, delta], [delta, delta]]
-        A = ip.Interval(midA, radA, midRadQ=True)
-        detA = A[0][0] * A[1][1] - A[1][0] * A[0][1]
-        return detA
+    midA = [[1.05, 1],
+            [0.95, 1]]
+    radA = [[delta, delta], [delta, delta]]
+    A = ip.Interval(midA, radA, midRadQ=True)
+    detA = A[0][0] * A[1][1] - A[1][0] * A[0][1]
+    return detA
+
 
 # Find delta that 0 is in det(A)
 def task1():
@@ -22,13 +25,13 @@ def task1():
         detA = calculateDet(delta)
         detArrayHight.append(detA.b)
         detArrayLow.append(detA.a)
-    
+
     plt.figure()
     plt.title("Task 1")
     plt.grid()
-    plt.plot(deltaArray, detArrayHight, label = "det up border")
-    plt.plot(deltaArray, detArrayLow, label = "det down border")
-    plt.plot(0.025, calculateDet(0.025).a, 'b*', label = "delta = 0.025")
+    plt.plot(deltaArray, detArrayHight, label="det up border", color='pink')
+    plt.plot(deltaArray, detArrayLow, label="det down border", color='blue')
+    plt.plot(0.025, calculateDet(0.025).a, 'b*', label="delta = 0.025", color='red')
     plt.xlabel('delta')
     plt.ylabel('det(A)')
     plt.legend()
@@ -38,6 +41,7 @@ def task1():
 def det2(A):
     return A[0][0] * A[1][1] - A[1][0] * A[0][1]
 
+
 def bauman(vertices):
     for i in range(len(vertices)):
         for j in range(i + 1):
@@ -45,9 +49,10 @@ def bauman(vertices):
                 return False
     return True
 
+
 def task2():
-    A = np.array([[1.05, 0.95], [ 1.0, 1.0]])
-    
+    A = np.array([[1.05, 0.95], [1.0, 1.0]])
+
     deltas = np.linspace(0.04, 0.06, 10)
     # Регрессия
     print("\nЗадача регрессии")
@@ -129,7 +134,6 @@ def task2():
         A11[0][1] += delta
         A11[1][0] -= delta
         A11[1][1] += delta
-
 
         A12 = A.copy()
         A12[0][0] += delta

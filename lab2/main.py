@@ -11,6 +11,7 @@ def line(ax, coefs, res, x, y, color):
     else:
         ax.plot(x, (res - coefs[0] * x) / coefs[1], color=color, linestyle='dashed')
 
+
 def start_linear_system_plot(A, b):
     colors = ['pink', 'indigo', 'royalblue', 'deeppink']
     x = np.linspace(-1, 5, 100)
